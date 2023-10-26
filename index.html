@@ -6,45 +6,44 @@
     <title>HTML成果</title>
     <style>
         .notification {
-            display: none;
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             right: 20px;
+            background-color: #007BFF;
+            color: #fff;
             padding: 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 5px;
+            display: none;
+            z-index: 999;
         }
     </style>
 </head>
 <body>
     <h1>感謝進入，以下是我的html製作成果，點擊即可查看</h1>
     <ul>
-        <li><a href="https://panda940927.github.io/qrcode.github.io/" onclick="showNotification('QR code產生器', 'https://panda940927.github.io/qrcode.github.io/')">QR code產生器</a></li>
-        <li><a href="https://panda940927.github.io/copytext.github.io/" onclick="showNotification('指定次數複製系統', 'https://panda940927.github.io/copytext.github.io/')">指定次數複製系統</a></li>
-        <li><a href="https://panda940927.github.io/basetrange.github.io/" onclick="showNotification('進制轉換系統', 'https://panda940927.github.io/basetrange.github.io/')">進制轉換系統</a></li>
-        <li><a href="https://panda940927.github.io/urlencoding.github.io/" onclick="showNotification('文字轉URL編譯系統', 'https://panda940927.github.io/urlencoding.github.io/')">文字轉URL編譯系統</a></li>
+        <li><a href="https://panda940927.github.io/qrcode.github.io/" onclick="showNotification('QR code產生器', 'https://panda940927.github.io/qrcode.github.io')">QR code產生器</a></li>
+        <li><a href="https://panda940927.github.io/copytext.github.io/" onclick="showNotification('指定次數複製系統', 'https://panda940927.github.io/copytext.github.io')">指定次數複製系統</a></li>
+        <li><a href="https://panda940927.github.io/basetrange.github.io/" onclick="showNotification('進制轉換系統', 'https://panda940927.github.io/basetrange.github.io')">進制轉換系統</a></li>
+        <li><a href="https://panda940927.github.io/urlencoding.github.io/" onclick="showNotification('文字轉URL編譯系統', 'https://panda940927.github.io/urlencoding.github.io')">文字轉URL編譯系統</a></li>
     </ul>
+
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+        <button id="enterButton">進入</button>
+    </div>
 
     <script>
         function showNotification(text, link) {
-            var notification = document.createElement('div');
-            notification.classList.add('notification');
+            var notification = document.getElementById('notification');
+            var notificationText = document.getElementById('notificationText');
+            var enterButton = document.getElementById('enterButton');
 
-            var notificationText = document.createElement('span');
             notificationText.textContent = text;
-
-            var enterButton = document.createElement('button');
-            enterButton.textContent = '進入';
-            enterButton.dataset.link = link;
             enterButton.onclick = function() {
-                window.location.href = this.dataset.link;
+                window.location.href = link;
             };
 
-            notification.appendChild(notificationText);
-            notification.appendChild(enterButton);
-
-            document.body.appendChild(notification);
+            notification.style.display = 'block';
         }
     </script>
 </body>
